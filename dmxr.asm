@@ -90,7 +90,9 @@ not_uart:
 
 iret:
 	banksel PORTD
-	clrf PORTD
+	movlw b'00100000'
+	andwf PORTD, f
+;	clrf PORTD
 
 	;Restore regs
 	swapf STATUS_temp, W
@@ -136,11 +138,17 @@ start:
 loop:
 	banksel DMXval
 	btfss DMXval, 0
-	goto loop
+	goto down
+	goto up
 
+up:
 	banksel PORTD
 	bsf PORTD, 5
+	goto loop
 
+down:
+	banksel PORTD
+	bcf PORTD, 5
 	goto loop
 
 END
