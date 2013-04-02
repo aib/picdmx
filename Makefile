@@ -4,7 +4,7 @@ asm:
 	gpasm -w 0 -p p$(CPU) dmxr.asm
 
 cc:
-	picc --chip=$(CPU) --opt=all dmxr.c
+	picc --chip=$(CPU) --opt=all dmx.c dmxr.c -Odmxr.hex
 
 dasm:
 	gpdasm -p p$(CPU) dmxr.hex
