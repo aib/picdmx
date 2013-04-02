@@ -34,6 +34,8 @@ void dmx_isr(void)
 
 void dmx_isr_impl(void)
 {
+	PORTD &= ~0x1f;
+
 	//Frame error
 	if (RCSTAbits.FERR) {
 		PORTDbits.RD1 = 1;
@@ -64,7 +66,6 @@ void dmx_isr_impl(void)
 
 	if (++dmxAddrOnBus == dmxAddr) {
 		dmxVal = val;
-	} else {
 		PORTDbits.RD4 = 1;
 	}
 }
