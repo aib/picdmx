@@ -17,13 +17,13 @@
 
 void main(void)
 {
-	DMXaddr = 3;
+	dmxAddr = 3;
 	dmx_setup();
 	INTCONbits.GIE = 1;
 
 	while (1) {
 //		PORTD ^= 0x20;
-		PORTDbits.RD5 = DMXval;
+		PORTDbits.RD5 = dmxVal;
 	}
 }
 
