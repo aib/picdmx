@@ -22,13 +22,11 @@ void main(void)
 	INTCONbits.GIE = 1;
 
 	while (1) {
-//		PORTD ^= 0x20;
 		PORTDbits.RD5 = dmxVal;
 	}
 }
 
 void interrupt isr()
 {
-	PORTD &= ~0x1f;
 	dmx_isr();
 }
