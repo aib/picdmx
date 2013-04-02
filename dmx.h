@@ -1,5 +1,5 @@
-#ifndef DMXR_H__
-#define DMXR_H__
+#ifndef DMX_H__
+#define DMX_H__
 
 #include <stdint.h>
 
