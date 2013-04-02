@@ -1,11 +1,11 @@
 #include <xc.h>
 #include "dmx.h"
 
-int8_t DMXaddr;
-int8_t DMXval;
+int8_t dmxAddr;
+int8_t dmxVal;
 
 void dmx_isr_impl(void);
-int8_t DMXaddrOnBus;
+int8_t dmxAddrOnBus;
 
 void dmx_setup(void)
 {
@@ -40,7 +40,7 @@ void dmx_isr_impl(void)
 
 		//Frame sync
 		if (RCREG == 0) {
-			DMXaddrOnBus = -1;
+			dmxAddrOnBus = -1;
 			PORTDbits.RD2 = 1;
 		}
 		//Actual frame error
@@ -62,8 +62,8 @@ void dmx_isr_impl(void)
 	//Byte received
 	uint8_t val = RCREG;
 
-	if (++DMXaddrOnBus == DMXaddr) {
-		DMXval = val;
+	if (++dmxAddrOnBus == dmxAddr) {
+		dmxVal = val;
 	} else {
 		PORTDbits.RD4 = 1;
 	}

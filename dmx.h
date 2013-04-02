@@ -6,7 +6,7 @@
 void dmx_setup(void);
 void dmx_isr(void);
 
-extern int8_t DMXaddr;
-extern int8_t DMXval;
+extern int8_t dmxAddr;
+extern int8_t dmxVal;
 
 #endif
