@@ -3,10 +3,12 @@
 
 #include <stdint.h>
 
+#define DMX_CHANNELS 8
+
 void dmx_setup(void);
 void dmx_isr(void);
 
-extern int8_t dmxAddr;
-extern uint8_t dmxVal;
+extern uint16_t dmxAddrBase;
+extern uint8_t dmxVal[DMX_CHANNELS];
 
 #endif
