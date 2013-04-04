@@ -20,9 +20,6 @@ void dmx_setup(void)
 	INTCONbits.PEIE = 1;
 
 	RCSTAbits.CREN = 1;
-
-	TRISD = 0;
-	PORTD = 0;
 }
 
 void dmx_isr(void)
@@ -34,27 +31,22 @@ void dmx_isr(void)
 
 void dmx_isr_impl(void)
 {
-	PORTD &= ~0x1f;
-
 	//Frame error
 	if (RCSTAbits.FERR) {
-		PORTDbits.RD1 = 1;
-
 		//Frame sync
 		if (RCREG == 0) {
 			dmxAddrOnBus = -1;
-			PORTDbits.RD2 = 1;
 		}
 		//Actual frame error
 		else {
-			PORTDbits.RD3 = 1;
+			//TODO: handle error
 		}
 		return;
 	}
 
 	//Buffer overflow
 	if (RCSTAbits.OERR) {
-		PORTDbits.RD0 = 1;
+		//TODO: handle error
 		//Restart EUSART subsystem
 		RCSTAbits.SPEN = 0;
 		RCSTAbits.SPEN = 1;
@@ -66,6 +58,5 @@ void dmx_isr_impl(void)
 
 	if (++dmxAddrOnBus == dmxAddr) {
 		dmxVal = val;
-		PORTDbits.RD4 = 1;
 	}
 }
