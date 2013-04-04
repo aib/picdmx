@@ -2,7 +2,7 @@
 #include "dmx.h"
 
 int8_t dmxAddr;
-int8_t dmxVal;
+uint8_t dmxVal;
 
 void dmx_isr_impl(void);
 int8_t dmxAddrOnBus;
